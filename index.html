@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Video Shoot Booking – Intuthuiko Innovation</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(160deg, #0a0a0f 0%, #12001f 60%, #0a0a0f 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(180,0,255,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(255,60,0,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(180,0,255,0.18);
+      border: 1px solid rgba(180,0,255,0.5);
+      color: #d966ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #bf00ff, #ff3c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #b0a8c0;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .price-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #bf00ff22, #ff3c0022);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .price-pill .label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #b0a8c0;
+      display: block;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .includes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .includes span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: #c8b8e0;
+    }
+
+    .includes span::before {
+      content: '✓';
+      color: #bf00ff;
+      font-weight: 700;
+    }
+
+    /* ── Form Section ── */
+    .form-section {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+    }
+
+    .form-section h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .form-section .sub {
+      text-align: center;
+      color: #7a6e8a;
+      font-size: 0.9rem;
+      margin-bottom: 36px;
+    }
+
+    .form-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 36px 32px;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #c0b0d8;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 0.97rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      -webkit-appearance: none;
+    }
+
+    select option { background: #1a0a2e; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #bf00ff;
+      box-shadow: 0 0 0 3px rgba(191,0,255,0.15);
+    }
+
+    input::placeholder, textarea::placeholder { color: #5a4e6a; }
+
+    textarea { resize: vertical; min-height: 80px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      margin-top: 8px;
+      background: linear-gradient(135deg, #bf00ff, #7a00cc);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover { opacity: 0.9; }
+    .submit-btn:active { transform: scale(0.99); }
+
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    }
+
+    .note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #5a4e6a;
+      margin-top: 16px;
+    }
+
+    /* ── Success ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .success-msg .icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-msg h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+    .success-msg p { color: #b0a8c0; font-size: 0.95rem; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.8rem;
+      color: #3a3050;
+    }
+
+    footer strong { color: #6a4a8a; }
+
+    @media (max-width: 480px) {
+      .row { grid-template-columns: 1fr; }
+      .form-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="badge">🎧 Limited Spots Available</div>
+    <h1>Get Your <span>DJ Set Filmed</span><br>for YouTube</h1>
+    <p>
+      We shoot your live DJ set — one professional angle, fully edited,
+      ready to upload. Perfect for young DJs ready to build their brand online.
+    </p>
+
+    <div class="price-pill">
+      <div>
+        <span class="label">One-time shoot</span>
+        R3,000
+      </div>
+    </div>
+
+    <div class="includes">
+      <span>1 Professional Camera Angle</span>
+      <span>Live DJ Set Recording</span>
+      <span>YouTube-Ready Edit</span>
+      <span>Professional Audio Sync</span>
+    </div>
+  </section>
+
+  <!-- ── Booking Form ── -->
+  <section class="form-section">
+    <h2>Book Your Shoot</h2>
+    <p class="sub">Fill in your details and we'll confirm your slot.</p>
+
+    <div class="form-card">
+      <form id="bookingForm" novalidate>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Sipho" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Dlamini" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">WhatsApp / Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+27 6X XXX XXXX" required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Your Location (City / Town)</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Johannesburg, Durban, Cape Town" required />
+        </div>
+
+        <div class="form-group">
+          <label for="genre">DJ Genre</label>
+          <select id="genre" name="genre" required>
+            <option value="" disabled selected>Select your genre</option>
+            <option>Amapiano</option>
+            <option>Afrobeats</option>
+            <option>Afro House</option>
+            <option>Deep House</option>
+            <option>Tech House</option>
+            <option>Gqom</option>
+            <option>Hip Hop / Trap</option>
+            <option>R&B / Soul</option>
+            <option>Commercial House</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bookingDate">Preferred Shoot Date</label>
+          <input type="date" id="bookingDate" name="bookingDate" required />
+        </div>
+
+        <div class="form-group">
+          <label for="djName">DJ Name / Artist Name</label>
+          <input type="text" id="djName" name="djName" placeholder="DJ ..." />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Anything Else We Should Know? (Optional)</label>
+          <textarea id="message" name="message" placeholder="e.g. I have my own equipment, I need a specific venue vibe..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">🎬 Book My Shoot – R3,000</button>
+        <p class="note">No payment required now. We'll contact you to confirm your booking.</p>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="icon">🎧</div>
+        <h3>You're on the list!</h3>
+        <p>We'll reach out on WhatsApp or email within 24 hours to confirm your shoot date.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 <strong>Intuthuiko Innovation</strong> — Empowering Young DJs
+  </footer>
+
+  <script>
+    // Set min date to today
+    const dateInput = document.getElementById('bookingDate');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const required = this.querySelectorAll('[required]');
+      let valid = true;
+
+      required.forEach(field => {
+        field.style.borderColor = '';
+        if (!field.value.trim()) {
+          field.style.borderColor = '#ff3c00';
+          valid = false;
+        }
+      });
+
+      if (!valid) return;
+
+      // Collect form data
+      const data = Object.fromEntries(new FormData(this).entries());
+      console.log('Booking submitted:', data);
+
+      // Show success state
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
