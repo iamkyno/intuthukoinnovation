@@ -511,7 +511,11 @@
   <script>
     document.querySelector('input[name="bookingDate"]').min = new Date().toISOString().split('T')[0];
 
-    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    const form = document.getElementById('bookingForm');
+    const submitBtn = form.querySelector('.submit-btn');
+    const btnLabel = submitBtn.childNodes[0];
+
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const rules = [
@@ -538,9 +542,36 @@
 
       if (!valid) { firstBad && firstBad.focus(); return; }
 
-      this.style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Submit to server
+      const original = btnLabel.textContent;
+      btnLabel.textContent = 'Sending…';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+
+      try {
+        const res = await fetch('submit.php', {
+          method: 'POST',
+          body: new FormData(this)
+        });
+        const data = await res.json();
+
+        if (data.ok) {
+          this.style.display = 'none';
+          const msg = document.getElementById('successMsg');
+          msg.style.display = 'block';
+          msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          alert(data.error || 'Something went wrong. Please try again.');
+          btnLabel.textContent = original;
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+      } catch (err) {
+        alert('Network error. Please check your connection and try again.');
+        btnLabel.textContent = original;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
     });
 
     document.querySelectorAll('input, select, textarea').forEach(el => {
