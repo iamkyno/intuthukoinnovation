@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 // CONFIG
-$TO_EMAIL   = 'mbhelelindo23@gmail.com';
+$TO_EMAIL   = 'enquiries@intuthukoinnovationgroup.co.za';
+$FROM_EMAIL = 'bookings@intuthukoinnovationgroup.co.za';
 $SITE_NAME  = 'Intuthuiko Innovation — DJ Shoot';
 
 // Only accept POST
@@ -64,7 +65,7 @@ $body .= "Notes:\n" . ($message ?: '—') . "\n\n";
 $body .= "------------------------\n";
 $body .= "Sent " . date('Y-m-d H:i') . " from the booking page.\n";
 
-$headers  = "From: {$SITE_NAME} <no-reply@" . ($_SERVER['HTTP_HOST'] ?? 'localhost') . ">\r\n";
+$headers  = "From: {$SITE_NAME} <{$FROM_EMAIL}>\r\n";
 $headers .= "Reply-To: {$firstName} {$lastName} <{$email}>\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
